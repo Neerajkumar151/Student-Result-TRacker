@@ -189,21 +189,21 @@ CREATE TABLE marks (
 
 ```sql
 -- Get total marks per student
-SELECT 
-    students.name, 
-    students.roll_no, 
-    SUM(marks.score) AS total_scored, 
+SELECT
+    students.name,
+    students.roll_no,
+    SUM(marks.score) AS total_scored,
     SUM(marks.max_score) AS total_marks
 FROM students
 JOIN marks ON students.id = marks.student_id
 GROUP BY students.id, students.name, students.roll_no;
 
 -- Find students who scored less than 40% in any subject
-SELECT 
-    s.name, 
-    s.roll_no, 
-    m.subject, 
-    m.score, 
+SELECT
+    s.name,
+    s.roll_no,
+    m.subject,
+    m.score,
     m.max_score,
     ((m.score / m.max_score) * 100) AS percentage
 FROM students s
@@ -211,8 +211,8 @@ JOIN marks m ON s.id = m.student_id
 WHERE (m.score / m.max_score) * 100 < 40;
 
 -- Calculate class average percentage per subject
-SELECT 
-    subject, 
+SELECT
+    subject,
     AVG(score * 100.0 / max_score) AS average_percentage
 FROM marks
 GROUP BY subject
@@ -317,4 +317,4 @@ node server.js
 ## Author
 
 - Developed by: Neeraj Kumar
-- Assignment: Student Result Tracker - Scenario 01
+- Assignment: Student Result Tracker.
