@@ -111,6 +111,23 @@ app.get("/results/toppers", async (req, res) => {
   }
 });
 
+app.get("/results/failed", async (req, res) => {
+  try {
+    const [rows] = await pool.execute(`
+      SELECT s.id, s.name,
+             (SUM(m.score) * 100.0 / SUM(m.max_score)) AS percentage
+      FROM students s
+      JOIN marks m ON s.id = m.student_id
+      GROUP BY s.id
+      HAVING percentage < 40
+    `);
+
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(process.env.PORT, () => {
   console.log("Server running on port " + process.env.PORT);
 });

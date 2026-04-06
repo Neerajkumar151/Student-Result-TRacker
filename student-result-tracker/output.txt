@@ -1,0 +1,100 @@
+1. Add a New Student
+Method: POST
+URL: http://localhost:3000/students
+Body (JSON):
+{
+  "name": "Neeraj Kumar",
+  "roll_no": "103",
+  "class": "Final Year" 
+}
+
+Output:- 
+{
+  "message": "Student added successfully",
+  "id": 1
+}
+
+
+2. Enter Subject Marks
+Method: POST
+URL: http://localhost:3000/marks
+Body (JSON):
+{
+  "student_id": 1, 
+  "subject": "Mathematics",
+  "score": 85,
+  "max_score": 100
+}
+
+Output:- 
+{
+  "message": "Marks added successfully"
+}
+
+
+3. Get Individual Result (Report Card)
+Method: GET
+URL: http://localhost:3000/students/1/result
+Logic: Calculates the weighted percentage. A student passes if the total percentage is >=40\%.
+
+Output:- 
+{
+    "total": "156",
+    "max": "200",
+    "percentage": "78.00",
+    "status": "Pass"
+}
+
+
+4. Method: GET
+URL: http://localhost:3000/results/toppers 
+Logic: Returns students ordered by their total_score in descending order, limited to 5 results.
+
+Output:- 
+[
+    {
+        "id": 7,
+        "name": "Lakshay",
+        "total_score": "178"
+    },
+    {
+        "id": 1,
+        "name": "John",
+        "total_score": "156"
+    },
+    {
+        "id": 3,
+        "name": "Neeraj Kumar",
+        "total_score": "113"
+    },
+    {
+        "id": 5,
+        "name": "Mandan Jha",
+        "total_score": "64"
+    },
+    {
+        "id": 4,
+        "name": "Parth Sharma",
+        "total_score": "34"
+    }
+]
+
+
+5. Get All Failed Students (Bonus)
+Method: GET
+URL: http://localhost:3000/results/failed 
+Logic: Filters for students whose overall percentage is strictly below 40%.
+
+Output :- 
+[
+    {
+        "id": 3,
+        "name": "Neeraj Kumar",
+        "percentage": "37.66667"
+    },
+    {
+        "id": 4,
+        "name": "Parth Sharma",
+        "percentage": "34.00000"
+    }
+]
