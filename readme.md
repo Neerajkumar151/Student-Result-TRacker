@@ -160,6 +160,67 @@ A student passes when percentage is `>= 40`.
 
 ---
 
+## SQL Queries and Challenge 2
+
+### Database schema
+
+```sql
+CREATE DATABASE student_tracker;
+USE student_tracker;
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    roll_no VARCHAR(50) NOT NULL UNIQUE,
+    class VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE marks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    subject VARCHAR(100) NOT NULL,
+    score INT NOT NULL,
+    max_score INT NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES students(id)
+);
+```
+
+### Sample queries
+
+```sql
+-- Get total marks per student
+SELECT 
+    students.name, 
+    students.roll_no, 
+    SUM(marks.score) AS total_scored, 
+    SUM(marks.max_score) AS total_marks
+FROM students
+JOIN marks ON students.id = marks.student_id
+GROUP BY students.id, students.name, students.roll_no;
+
+-- Find students who scored less than 40% in any subject
+SELECT 
+    s.name, 
+    s.roll_no, 
+    m.subject, 
+    m.score, 
+    m.max_score,
+    ((m.score / m.max_score) * 100) AS percentage
+FROM students s
+JOIN marks m ON s.id = m.student_id
+WHERE (m.score / m.max_score) * 100 < 40;
+
+-- Calculate class average percentage per subject
+SELECT 
+    subject, 
+    AVG(score * 100.0 / max_score) AS average_percentage
+FROM marks
+GROUP BY subject
+ORDER BY average_percentage ASC;
+```
+
+---
+
 ## Setup
 
 ### Database
