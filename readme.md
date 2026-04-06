@@ -38,125 +38,88 @@ These prompts were used while building the project.
 
 ### Stage 1: Requirements & Planning
 
-**Prompt 1: Initial Problem Analysis**
+**Prompt 1: Requirement Analysis**
 
-> I am building a backend assignment called "Student Result Tracker".
+> I am building a backend REST API called "Student Result Tracker".
 >
-> Context:
+> The data model includes two tables:
 >
-> - There are two tables: `students(id, name, roll_no, class)` and `marks(id, student_id, subject, score, max_score)`.
-> - The system must record students, add marks, and calculate result percentages.
+> - `students(id, name, roll_no, class)`
+> - `marks(id, student_id, subject, score, max_score)`
 >
-> Please act as a senior backend developer and a teacher:
+> The API must record students, store marks, calculate result percentages, determine pass/fail status, and provide summary endpoints.
 >
-> 1. Explain the requirements in simple language.
-> 2. List the core features I need to build.
-> 3. Describe common mistakes beginners make.
-> 4. Identify important edge cases.
-> 5. Start with "Challenge 1: Requirements Analysis".
+> As a senior backend architect, please:
+>
+> 1. Summarize the requirements in clear language.
+> 2. Identify the core features and user flows.
+> 3. List common beginner pitfalls for this assignment.
+> 4. Highlight key edge cases and validation rules.
 
-**Prompt 2: Assignment Context Alignment**
+**Prompt 2: Structured Implementation Plan**
 
-> This is my full assignment scenario: [paste the Scenario 01 text here].
+> Here is the assignment context: .
 >
-> I need you to:
+> Help me translate it into a step-by-step implementation plan. Include:
 >
-> 1. Explain the assignment clearly.
-> 2. Help me convert it into a structured plan.
-> 3. Show me the best way to ask the problem in easy steps.
-> 4. Tell me whether this prompt is optimal for a beginner:
->    "this is my problem statement 1, first analyze this and make a plan to tackle this problem in easy steps as i am not proffessional in the backend..."
+> 1. data model design
+> 2. API endpoints and responsibilities
+> 3. database queries for result calculation
+> 4. testing approach and success criteria
 
-### Stage 2: Technical Logic (SQL & Architecture)
+### Stage 2: Technical Design
 
-**Prompt 3: SQL Challenge**
+**Prompt 3: SQL Query Design**
 
-> I am working on Challenge 2 for the "Student Result Tracker" backend.
+> I need SQL queries for the Student Result Tracker backend with the following model: students and marks.
 >
-> Please act as a senior backend developer and explain the SQL logic clearly.
+> For each task, please provide:
 >
-> For each question:
+> - a clear description of the logic
+> - clean SQL statements
+> - explanations of key clauses like `SUM()`, `GROUP BY`, `JOIN`, and `WHERE`
 >
-> - List all students with total marks
-> - Find students scoring < 40% in any subject
-> - Compute class average
+> Tasks:
 >
-> Do the following:
->
-> 1. Explain the logic for each query.
-> 2. Write clean SQL for each problem.
-> 3. Explain important clauses like `SUM()`, `GROUP BY`, `JOIN`, and `WHERE`.
+> 1. List all students with total marks and percentage.
+> 2. Find students scoring below 40% in any subject.
+> 3. Compute the average percentage for a class.
 
-**Prompt 4: Architectural Decisions**
+**Prompt 4: Architecture and API Structure**
 
-> I want to build this backend with a simple and readable architecture.
->
-> Please answer:
->
-> 1. Why should I use Express for this project?
-> 2. How should I structure the Express app for easy testing in Postman?
-> 3. What are the main files and endpoints I need?
-> 4. Write the plan in a way that is easy for a beginner to follow.
-
-### Stage 3: Environment Setup & Troubleshooting
-
-**Prompt 5: System Configuration**
-
-> I have created my project files and a `.env` file, but I need help finishing setup.
+> I want a simple, maintainable Express backend for this assignment.
 >
 > Please explain:
 >
-> 1. What should go in the `.env` file?
-> 2. What should go in each project file?
-> 3. How do I install dependencies and run the app locally?
-> 4. I am using Xubuntu, so also tell me how to install MySQL Workbench on Xubuntu.
+> 1. why Express is a suitable choice
+> 2. how to organize routes, controllers, and database access
+> 3. which endpoints are required and what each should return
+> 4. how to keep the app easy to test with Postman or curl
 
-**Prompt 6: Debugging Installation**
+### Stage 3: Environment Setup
 
-> I am facing installation errors on Xubuntu.
->
-> Here is what happened:
->
-> - `sudo dpkg -i mysql-workbench-community_*.deb` failed with "No such file or directory"
-> - `ls | grep mysql` shows the downloaded package name
-> - dependency problems prevent configuration of `mysql-workbench-community`: depends on `libmysqlclient21`... Package is not installed
-> - `sudo systemctl start mysql` reports "Unit mysql.service not found"
->
-> Please help me:
->
-> 1. Fix the package installation issue.
-> 2. Resolve missing dependencies.
-> 3. Start the MySQL service correctly.
+**Prompt 5: Environment and Configuration Guidance**
 
-**Prompt 7: Server Selection**
+> I need help finalizing the project setup.
+>
+> Please explain:
+>
+> 1. recommended `.env` values for MySQL connection
+> 2. what belongs in `server.js`, `db.js`, and `package.json`
+> 3. how to install dependencies and start the app
+> 4. basic troubleshooting for database connection issues
 
-> I need to download the correct MySQL server for Xubuntu.
->
-> I have a list of Generic Linux tarballs and I am using:
->
-> - Xubuntu
-> - glibc 2.28
-> - 64-bit
->
-> Please tell me:
->
-> 1. Which MySQL tarball to download
-> 2. How to choose the correct version
-> 3. What is compatible with my system
+### Stage 4: Final Verification
 
-### Stage 4: Final Verification & Documentation
+**Prompt 6: Assignment Compliance Review**
 
-**Prompt 8: Compliance Check**
-
-> I will upload the assignment PDF.
+> I will provide the assignment PDF.
 >
-> Please:
+> Compare the requirements with the current project scope and:
 >
-> 1. Compare the PDF requirements with my current project context.
-> 2. Confirm whether the user stories, SQL queries, and code logic match the assignment.
-> 3. Tell me if anything is missing or needs correction.
->
-> Then I will tell you what I want next.
+> 1. confirm whether the API endpoints and result logic match the assignment
+> 2. identify any missing functionality or incorrect assumptions
+> 3. recommend fixes needed to meet the assignment requirements
 
 ---
 
